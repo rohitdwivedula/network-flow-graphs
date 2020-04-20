@@ -6,6 +6,13 @@ struct edge {
 	int capacity;
 };
 
+/**
+ * @brief find an augmenting path (if it exists) using BFS
+ * @param residual_graph the residual graph of the network. 
+ * @param start node at which to start the BFS, i.e. source
+ * @param end node at which BFS ends, i.e. sink
+ * @return a vector containing a list of nodes (the path), or an empty list if no path exists
+ */
 vector<int> find_augmenting_path(vector<vector<int>> residual_graph, int start, int end){
 	vector<bool> discovered(residual_graph.size(), false); 
 	discovered[start] = true;
@@ -43,6 +50,13 @@ vector<int> find_augmenting_path(vector<vector<int>> residual_graph, int start, 
 	return path;
 }
 
+
+/**
+ * @brief for a given path, find the bottleneck limiting the flow
+ * @param adjacency_matrix adjacency matrix of the flow network
+ * @param path list of nodes
+ * @return integer value, representing the bottleneck value.
+ */
 int get_bottleneck(vector<vector<edge>> adjacency_matrix, vector<int> path){
 	int bottleneck = INT_MAX;
 	for(int i=0;i<path.size()-1;i++){
@@ -53,6 +67,13 @@ int get_bottleneck(vector<vector<edge>> adjacency_matrix, vector<int> path){
 	return bottleneck;
 }
 
+
+/**
+ * @brief find the maximal flow rate of a given graph from source to sink
+ * @param s source
+ * @param t sink
+ * @return integer value, the max-flow value.
+ */
 int get_max_flow(vector<vector<edge>> adjacency_matrix, int s, int t)
 {
 	vector<vector<int>> residual_graph;
@@ -100,6 +121,10 @@ int get_max_flow(vector<vector<edge>> adjacency_matrix, int s, int t)
 	return total_flow;
 }
 
+/**
+ * @brief driver code to run ford fulkerson algorithm and get maximal flow
+ * @return integer value 0 on successful run. 
+ */
 int main(){
 	int vertices, edges;
 	cin >> vertices >> edges;
@@ -125,7 +150,7 @@ int main(){
 	auto start = chrono::steady_clock::now();
 	int flow = get_max_flow(adjacency_matrix, source, sink);
 	auto end = chrono::steady_clock::now();
-	cout << "Max flow possible (Ford Fulkerson): " << flow << endl;
+	cout << "[RESULT] Max flow possible (Ford Fulkerson): " << flow << endl;
 	auto calculation_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 	cout << "[RESULT] Time taken (seconds): " << (1.00 * calculation_time)/1000 << endl;
 	return 0;
