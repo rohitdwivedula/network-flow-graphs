@@ -1,33 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 #include "ford_fulkerson.h"
-
+#include "utils.h"
 /**
  * @brief driver code to run ford fulkerson algorithm, get maximal flow and find the min-st cut.
  * @return integer value 0 on successful run. 
  */
 int main(){
-	int vertices, edges;
-	cin >> vertices >> edges;
 	int source, sink;
-	cin >> source >> sink;
-	vector<vector<edge>> adjacency_matrix;
-	// create one row of adjacency matrix
-	vector<edge> row;
-	for(int i=0;i<vertices;i++){
-		struct edge e;
-		e.flow = 0;
-		e.capacity = 0;
-		row.push_back(e);
-	}
-	for(int i=0;i<vertices;i++){
-		adjacency_matrix.push_back(row);
-	}
-	for(int i=0;i<edges;i++){
-		int start, end, capacity;
-		cin >> start >> end >> capacity;
-		adjacency_matrix[start][end].capacity = capacity;
-	}
+	vector<vector<edge>> adjacency_matrix = user_input(&source, &sink);
 	auto start = chrono::steady_clock::now();
 	vector<vector<int>> final_residual_graph = ford_fulkerson(adjacency_matrix, source, sink);
 	// calculate total flow from final adjacency matrix

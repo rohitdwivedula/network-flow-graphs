@@ -1,3 +1,5 @@
+#ifndef FORD_FULKERSON_H
+#define FORD_FULKERSON_H
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -114,3 +116,5 @@ vector<vector<int>> ford_fulkerson(vector<vector<edge>> &adjacency_matrix, int s
 	}
 	return residual_graph;
 }
+
+#endif
