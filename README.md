@@ -16,6 +16,26 @@ Team members: [Rohit Dwivedula](github.com/rohitdwivedula/), [Vamsi Nallapparedd
 3. To run a small example use a command of this format: `cat small_examples/graph_1.txt | ./min_st.o`. The runtimes will be reported in all the runs, but for most small examples it'll show up as zero after rounding down. 
 4. All the code has been formatted in the requisite way for Doxygen to work - on any system which has Doxygen installed, run `doxygen .doxygen-config` to generate HTML and Latex files. 
 
-# Resources Used
+# Runtimes
+
+## Ford Fulkerson
+| Dataset | Edges | Vertices | Maximum Flow | Runtime |
+|---|---|---|---|---|
+| small_examples/graph_1.txt | 4 | 5 | 6 | ~0 seconds |
+| small_examples/graph_2.txt | 6 | 6 | 7 | ~0 seconds |
+| small_examples/graph_4.txt | 8 | 16 | 31 | ~0 seconds |
+| flow_graph.txt | 4755  | 34247 | 251 | 19.056 seconds |
+
+## Bipartite Matching
+
+| Dataset | Edges | Vertices | Maximum edges in bpm | Runtime |
+|---|---|---|---|---|
+| out.brunson_revolution_revolution | 160 | 141 | 5 | ~0 seconds |
+| out.moreno_crime_crime | 1476 | 1380 | 451 | 0.02 seconds |
+| out.opsahl-collaboration | 58595 | 38741 | 12652 | 21.843 seconds |
+| out.brunson_corporate-leadership_corporate-leadership | 99 | 44 | 20 | ~0 seconds |
+
+# Resources Used and General Discussion
 
 1. [This visualisation](https://www-m9.ma.tum.de/graph-algorithms/flow-ford-fulkerson/index_en.html) of the Ford Fulkerson algorithm was pretty helpful in understanding the algorithm, and was also useful in generating the small example graphs, which we made with the help of the GUI interface offered by this applet.
+2. Once we understood the algorithm it was more or less pretty straightforward to implement. 

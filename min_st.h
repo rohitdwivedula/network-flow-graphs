@@ -13,7 +13,7 @@ void dfs(vector<vector<int>> graph, int start, unordered_set<int>& visited)
 {
 	visited.insert(start);
 	for(int i=0;i<graph.size();i++){
-		if(graph[start][i] != 0 && start !=i && !visited.count(start)){
+		if(graph[start][i] != 0 && start != i && !visited.count(start)){
 			dfs(graph, i, visited);
 		}
 	}
