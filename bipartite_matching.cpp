@@ -3,6 +3,13 @@ using namespace std;
 
 typedef long long li;
 
+/**
+ * @brief check if a matching vertex for u is possible
+ * @param adj adjacency matrix
+ * @param u vertex
+ * @param seen has a vertex been seen yet?
+ * @return boolean value
+ */
 bool bpm(vector<vector<bool>> &adj,li u,vector<bool> &seen, vector<li> &matchR){
 	li M = adj.size();
 	li N = adj[0].size();
@@ -20,6 +27,11 @@ bool bpm(vector<vector<bool>> &adj,li u,vector<bool> &seen, vector<li> &matchR){
 	return false;
 }
 
+/**
+ * @brief find the maximal matxhing's size
+ * @adj adjacency matrix
+ * @return integer represting the maximal matching portion
+ */
 int maxBPM(vector<vector<bool>> &adj){
 	li M = adj.size();
 	li N = adj[0].size();
@@ -37,6 +49,10 @@ int maxBPM(vector<vector<bool>> &adj){
 	return result;
 }
 
+/**
+ * @brief driver code to run the bipartite matching algo
+ * @return integer 0 on successful execution
+ */
 int main(){
 	auto total_start = chrono::steady_clock::now();
 
