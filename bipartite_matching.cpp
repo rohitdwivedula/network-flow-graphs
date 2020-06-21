@@ -5,7 +5,8 @@ using namespace std;
 
 int main(){
 	//Take user input
-	vector<vector<edge>> adj = user_input_2();
+	int v1;
+	vector<vector<edge>> adj = user_input_2(&v1);
 	int vertices = adj.size()-2;
 	//Start clock
 	auto algo_start = chrono::steady_clock::now();
@@ -17,7 +18,7 @@ int main(){
 	for(int i=1;i<res.size()-1;i++){
 		for(int j=1;j<res.size()-1;j++){
 			if(adj[i][j].capacity-res[i][j] > 0 && i!=j){
-				cout<<"( "<<i<<" -> "<<j<<" )"<<endl;
+				cout<<"( "<<i<<" -> "<<j-v1<<" )"<<endl;
 				m++;
 			}
 		}
