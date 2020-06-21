@@ -1,3 +1,7 @@
+/**
+ * \file utils.h
+ * Utility functions to take inputs.  
+ */
 #ifndef UTILS_H
 #define UTILS_H
 #include "ford_fulkerson.h"

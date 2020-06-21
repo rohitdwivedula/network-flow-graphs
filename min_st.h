@@ -1,3 +1,7 @@
+/**
+ * \file min_st.h
+ * Functions to calculate the min_st cut.  
+ */
 #ifndef MIN_ST_H
 #define MIN_ST_H
 #include <bits/stdc++.h>

@@ -1,3 +1,17 @@
+/**
+ * \mainpage
+ * The Ford Fulkerson algorithm is used to calculate the maximal flow possible
+ * from a source to a sink. This C++ implementation of the algorithm uses 
+ * Ford Fulkerson with BFS to find augmenting paths. This group assignment 
+ * was done by Rohit Dwivedula, Varad Kshirsagar, and Vamsi Nallappareddy. 
+ */
+
+/**
+ * \file ford_fulkerson.cpp
+ * Driver code that uses functions in "utils.h" and "ford_fulkerson.h" to calculate 
+ * and print the maximal flow of a directed graph. 
+ */
+
 #include <bits/stdc++.h>
 using namespace std;
 #include "ford_fulkerson.h"

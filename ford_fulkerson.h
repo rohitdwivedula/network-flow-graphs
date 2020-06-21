@@ -1,3 +1,7 @@
+/**
+ * \file ford_fulkerson.h
+ * Defines functions to calculate maximal flow, and residual graphs using Ford Fulkerson algorithm.  
+ */
 #ifndef FORD_FULKERSON_H
 #define FORD_FULKERSON_H
 #include <bits/stdc++.h>

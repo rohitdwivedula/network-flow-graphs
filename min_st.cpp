@@ -1,3 +1,8 @@
+/**
+ * \file min_st.cpp
+ * Driver code to calculate min-st cut using functions defined in "min_st.h" and "utils.h".  
+ */
+
 #include <bits/stdc++.h>
 using namespace std;
 #include "min_st.h"
