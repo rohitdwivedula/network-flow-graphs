@@ -38,4 +38,42 @@ vector<vector<edge>> user_input(int* _source, int* _sink)
 	return adjacency_matrix;
 }
 
+vector<vector<edge>> user_input_2(int *x)
+{
+	int edges,v1,v2;
+	cin >> edges;
+	cin >> v1;
+	cin >> v2;
+	*x = v1;
+	int source, sink;
+	source = 0;
+	sink = v1+v2+1;
+	int vertices = v1+v2+2;
+	vector<vector<edge>> adjacency_matrix;
+	// create one row of adjacency matrix
+	vector<edge> row;
+	for(int i=0;i<vertices;i++){
+		struct edge e;
+		e.flow = 0;
+		e.capacity = 0;
+		row.push_back(e);
+	}
+	for(int i=0;i<vertices;i++){
+		adjacency_matrix.push_back(row);
+	}
+	for(int i=0;i<edges;i++){
+		int start, end;
+		cin >> start >> end;
+		adjacency_matrix[start][end+v1].capacity = 1;
+	}
+	for(int i=1;i<=v1;i++){
+		adjacency_matrix[0][i].capacity = 1;
+	}
+	for(int i=v1+1;i<=v1+v2;i++){
+		adjacency_matrix[i][sink].capacity = 1;
+	}
+
+	return adjacency_matrix;
+}
+
 #endif
