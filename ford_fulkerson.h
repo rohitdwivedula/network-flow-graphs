@@ -59,11 +59,10 @@ vector<int> find_augmenting_path(vector<vector<int>> residual_graph, int start, 
  * @param path list of nodes
  * @return integer value, representing the bottleneck value.
  */
-int get_bottleneck(vector<vector<edge>> adjacency_matrix, vector<int> path){
+int get_bottleneck(vector<vector<int>> residual_graph, vector<int> path){
 	int bottleneck = INT_MAX;
 	for(int i=0;i<path.size()-1;i++){
-		struct edge current_edge = adjacency_matrix[path[i]][path[i+1]];
-		int current_value = current_edge.capacity - current_edge.flow;
+		int current_value = residual_graph[path[i]][path[i+1]];
 		if(current_value < bottleneck) bottleneck = current_value;
 	}
 	return bottleneck;
@@ -76,7 +75,7 @@ int get_bottleneck(vector<vector<edge>> adjacency_matrix, vector<int> path){
  * @param t sink
  * @return final residual graph.
  */
-vector<vector<int>> ford_fulkerson(vector<vector<edge>> &adjacency_matrix, int s, int t)
+vector<vector<int>> ford_fulkerson(vector<vector<edge>> adjacency_matrix, int s, int t, int* max_flow)
 {
 	vector<vector<int>> residual_graph;
 	for(int i = 0; i<adjacency_matrix.size();i++){
@@ -88,29 +87,15 @@ vector<vector<int>> ford_fulkerson(vector<vector<edge>> &adjacency_matrix, int s
 	}
 
 	vector<int> path = find_augmenting_path(residual_graph, s, t);
+	*max_flow = 0;
 	while(path.size() > 0){
 		// augment flow
-		int b = get_bottleneck(adjacency_matrix, path);
-		bool forward_edge = true; 
+		int b = get_bottleneck(residual_graph, path);
 		for(int i=0;i<path.size()-1;i++){
-			struct edge current_edge = adjacency_matrix[path[i]][path[i+1]];
-			if(current_edge.capacity == 0){
-				current_edge = adjacency_matrix[path[i+1]][path[i]];
-				forward_edge = false;
-			}
-			assert(current_edge.capacity != 0);
-			if(forward_edge){
-				current_edge.flow += b;
-				residual_graph[path[i]][path[i+1]] -= b;
-				residual_graph[path[i+1]][path[i]] += b;
-			}
-			else{
-				current_edge.flow -= b;
-				residual_graph[path[i]][path[i+1]] += b;
-				residual_graph[path[i+1]][path[i]] -= b;
-			}
-			adjacency_matrix[path[i]][path[i+1]] = current_edge;
+			residual_graph[path[i]][path[i+1]] -= b;
+			residual_graph[path[i+1]][path[i]] += b;
 		}
+		*max_flow += b;
 		// check if there's another path
 		path = find_augmenting_path(residual_graph, s, t);
 	}

@@ -13,7 +13,7 @@ void dfs(vector<vector<int>> graph, int start, unordered_set<int>& visited)
 {
 	visited.insert(start);
 	for(int i=0;i<graph.size();i++){
-		if(graph[start][i] != 0 && start != i && !visited.count(start)){
+		if(graph[start][i] != 0 && start != i && !visited.count(i)){
 			dfs(graph, i, visited);
 		}
 	}
@@ -27,7 +27,8 @@ void dfs(vector<vector<int>> graph, int start, unordered_set<int>& visited)
  * @return integer, capacity of the minimum cut
  */
 int min_st_cut(vector<vector<edge>> adjacency_matrix, int s, int t){
-	vector<vector<int>> final_residual_graph = ford_fulkerson(adjacency_matrix, s, t);
+	int max_flow;
+	vector<vector<int>> final_residual_graph = ford_fulkerson(adjacency_matrix, s, t, &max_flow);
 	unordered_set<int> reachable;
 	dfs(final_residual_graph, s, reachable);
 	cout <<"============== MIN-ST CUT =============="<<endl;
