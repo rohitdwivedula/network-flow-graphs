@@ -4,12 +4,9 @@
 using namespace std;
 
 int main(){
-	int vertices;
-	cin>>vertices;
-
 	//Take user input
 	vector<vector<edge>> adj = user_input_2();
-
+	int vertices = adj.size()-2;
 	//Start clock
 	auto algo_start = chrono::steady_clock::now();
 
